@@ -1,12 +1,12 @@
-import { createContext, useState } from 'react';
+import { createContext, useState } from "react";
 
 const LocalizantionsContext = createContext();
 
 const Provider = ({ children }) => {
-  const [localizations, setLocalizations] = useState([{ dup: 'dup' }]);
+  const [localizations, setLocalizations] = useState([]);
 
-  const addLocalization = () => {
-    setLocalizations(...localizations, { dupa: 'dupa' });
+  const addLocalization = (title) => {
+    setLocalizations([...localizations, { title: title }]);
   };
 
   const valueToShare = {
