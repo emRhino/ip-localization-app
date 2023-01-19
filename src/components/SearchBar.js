@@ -13,8 +13,6 @@ const SearchBar = () => {
   const [phrase, setPhrase] = useState("");
   const { addLocalization } = useContext(LocalizationsContext);
 
-  console.log(API_KEY);
-
   const handleChange = (e) => {
     setPhrase(e.target.value);
   };
@@ -26,7 +24,9 @@ const SearchBar = () => {
       `http://api.ipstack.com/${phrase}?access_key=${API_KEY}`
     );
 
-    addLocalization(phrase);
+    console.log(response.data);
+
+    addLocalization(response.data);
     setPhrase("");
   };
 

@@ -1,9 +1,23 @@
 import styled from "styled-components";
 
-const StyledSearchHistory = styled.div`
+export const StyledSearchHistory = styled.div`
   background: white;
   padding: 1rem;
   grid-area: history;
+  overflow-y: auto;
 `;
 
-export default StyledSearchHistory;
+export const StyledSearchHistoryListWrapper = styled.ul`
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+`;
+
+export const StyledSearchHistoryListElement = styled.li`
+  padding: 10px 0;
+  border-bottom: 1px solid lightgray;
+
+  &:last-child {
+    border-bottom: none;
+  }
+`;

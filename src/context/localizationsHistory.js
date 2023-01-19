@@ -5,8 +5,8 @@ const LocalizantionsContext = createContext();
 const Provider = ({ children }) => {
   const [localizations, setLocalizations] = useState([]);
 
-  const addLocalization = (title) => {
-    setLocalizations([...localizations, { title: title }]);
+  const addLocalization = (data) => {
+    setLocalizations([...localizations, data]);
   };
 
   const valueToShare = {
