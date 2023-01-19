@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import LocalizationsContext from '../context/localizationsHistory';
+
 import {
   StyledForm,
   StyledInput,
@@ -7,12 +9,15 @@ import {
 
 const SearchBar = () => {
   const [phrase, setPhrase] = useState('');
+  const { addLocalization } = useContext(LocalizationsContext);
+
   const handleClick = (e) => {
     setPhrase(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    addLocalization();
     setPhrase('');
   };
 
