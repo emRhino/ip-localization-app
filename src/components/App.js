@@ -1,5 +1,5 @@
 import { Normalize } from "styled-normalize";
-import GlobalStyle from "../theme/GlobalStyle";
+import GlobalStyle from "../styles/GlobalStyle";
 import Wrapper from "./Wrapper";
 import SearchBar from "./SearchBar";
 import SearchesHistory from "./SearchesHistory";

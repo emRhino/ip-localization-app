@@ -1,13 +1,8 @@
-import styled from "styled-components";
+import StyledMap from "../styles/Map.styles";
 import PropTypes from "prop-types";
 
 const Map = ({ placeholder }) => {
-  const StyledMap = styled.div`
-    background: purple;
-    grid-area: map-${placeholder === "top" ? "top" : "bottom"};
-  `;
-
-  return <StyledMap>Mapa</StyledMap>;
+  return <StyledMap placeholder={placeholder}>Mapa</StyledMap>;
 };
 
 Map.propTypes = {
