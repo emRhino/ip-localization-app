@@ -1,7 +1,10 @@
-import StyledMap from "../styles/Map.styles";
 import PropTypes from "prop-types";
+import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import StyledMap from "../styles/Map.styles";
 
-const Map = ({ placeholder }) => {
+// https://www.npmjs.com/package/@react-google-maps/api
+
+const Map = ({ placeholder, isPreviousLocation }) => {
   return <StyledMap placeholder={placeholder}>Mapa</StyledMap>;
 };
 

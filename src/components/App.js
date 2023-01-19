@@ -15,9 +15,9 @@ const App = function App() {
         <SearchesHistory />
         <SearchBar />
         <Map placeholder="top" />
-        <Map placeholder="bottom" />
+        <Map placeholder="bottom" isPreviousLocation />
         <LocationDetails placeholder="top" />
-        <LocationDetails placeholder="bottom" />
+        <LocationDetails placeholder="bottom" isPreviousLocation />
       </Wrapper>
     </>
   );
