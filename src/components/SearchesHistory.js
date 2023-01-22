@@ -4,14 +4,15 @@ import {
   StyledSearchHistory,
   StyledSearchHistoryListWrapper,
 } from "../styles/SearchHistory.styles";
-import LocalizantionsContext from "../context/localizationsHistory";
+import IPsContext from "../context/IPsHistory";
 import SingleIpAddress from "./SingleIpAddress";
 
 const SearchesHistory = () => {
-  const { localizations } = useContext(LocalizantionsContext);
+  const { localizations } = useContext(IPsContext);
 
   const renderHistoryList = () => {
-    const list = localizations.map((localization, index) => {
+    const reverseList = localizations.reverse();
+    const list = reverseList.map((localization, index) => {
       return <SingleIpAddress key={index} address={localization.ip} />;
     });
 

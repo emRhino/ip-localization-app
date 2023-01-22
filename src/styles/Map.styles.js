@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 const StyledMap = styled.div`
-  background: purple;
+  background: white;
+  padding: 1rem;
   grid-area: map-${(props) => props.placeholder};
 `;
 

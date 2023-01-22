@@ -1,33 +1,46 @@
-import { useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import StyledLocationDetails from "../styles/LocationDetails.styles";
-import LocalizantionsContext from "../context/localizationsHistory";
+import {
+  StyledLocationDetails,
+  StyledLocationDetailsLabel,
+  StyledLocationDetailsItem,
+  StyledLocationDetailsIValue,
+} from "../styles/LocationDetails.styles";
 import StyledHeading from "../styles/Heading.styles";
 
-const LocationDetails = ({ placeholder, targetData }) => {
-  const { localizations } = useContext(LocalizantionsContext);
+const LocationDetails = ({ placeholder, targetData, title }) => {
+  const renderDetails = () => {
+    if (!targetData) {
+      return false;
+    }
 
-  // useEffect(() => {
-
-  // }, [localizations]);
-
-  // const getData = () => {
-  //   if (localizations.length) {
-  //     return false;
-  //   }
-
-  //   if (targetData === "previus") {
-  //     return <div>{localizations[1].ip}</div>;
-  //   }
-
-  //   return <div>{localizations[0].ip}</div>;
-  // };
+    return (
+      <>
+        <StyledLocationDetailsItem>
+          <StyledLocationDetailsLabel>IP address</StyledLocationDetailsLabel>
+          <StyledLocationDetailsIValue>
+            {targetData.ip} ({targetData.type}){" "}
+            <img src={targetData.location.country_flag} alt="" />
+          </StyledLocationDetailsIValue>
+        </StyledLocationDetailsItem>
+        <StyledLocationDetailsItem>
+          <StyledLocationDetailsLabel>Place</StyledLocationDetailsLabel>
+          <StyledLocationDetailsIValue>
+            {targetData.city}, {targetData.region_name}
+          </StyledLocationDetailsIValue>
+        </StyledLocationDetailsItem>
+        <StyledLocationDetailsItem>
+          <StyledLocationDetailsLabel>Zip-code</StyledLocationDetailsLabel>
+          <div>{targetData.zip}</div>
+        </StyledLocationDetailsItem>
+      </>
+    );
+  };
 
   return (
     <StyledLocationDetails placeholder={placeholder}>
-      <StyledHeading>Location details</StyledHeading>
-      {}
+      <StyledHeading>{title}</StyledHeading>
+      {renderDetails()}
     </StyledLocationDetails>
   );
 };

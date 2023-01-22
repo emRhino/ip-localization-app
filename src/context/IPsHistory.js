@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-const LocalizantionsContext = createContext();
+const IPsContext = createContext();
 
 const Provider = ({ children }) => {
   const [localizations, setLocalizations] = useState([]);
@@ -15,11 +15,9 @@ const Provider = ({ children }) => {
   };
 
   return (
-    <LocalizantionsContext.Provider value={valueToShare}>
-      {children}
-    </LocalizantionsContext.Provider>
+    <IPsContext.Provider value={valueToShare}>{children}</IPsContext.Provider>
   );
 };
 
 export { Provider };
-export default LocalizantionsContext;
+export default IPsContext;
