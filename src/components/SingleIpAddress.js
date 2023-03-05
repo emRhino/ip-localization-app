@@ -1,9 +1,7 @@
-import { StyledSearchHistoryListElement } from "../styles/SearchHistory.styles";
+import { HistoryListElement } from "../styles/SearchHistory.styles";
 
 const SingleIpAddress = ({ address }) => {
-  return (
-    <StyledSearchHistoryListElement>{address}</StyledSearchHistoryListElement>
-  );
+  return <HistoryListElement>{address}</HistoryListElement>;
 };
 
 export default SingleIpAddress;

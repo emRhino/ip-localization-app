@@ -7,13 +7,13 @@ export const StyledSearchHistory = styled.div`
   overflow-y: auto;
 `;
 
-export const StyledSearchHistoryListWrapper = styled.ul`
+export const ListWrapper = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 0;
 `;
 
-export const StyledSearchHistoryListElement = styled.li`
+export const HistoryListElement = styled.li`
   padding: 10px 0;
   border-bottom: 1px solid lightgray;
 

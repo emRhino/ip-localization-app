@@ -1,7 +1,7 @@
-import StyledHeading from "../styles/Heading.styles";
+import Heading from "../styles/Heading.styles";
 
 const heading = ({ children }) => {
-  return <StyledHeading>{children}</StyledHeading>;
+  return <Heading>{children}</Heading>;
 };
 
 export default heading;

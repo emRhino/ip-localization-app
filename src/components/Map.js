@@ -1,20 +1,69 @@
+import React from "react";
+import { useState, useCallback } from "react";
+import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
+
 import PropTypes from "prop-types";
-// import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import StyledMap from "../styles/Map.styles";
-import StyledHeading from "../styles/Heading.styles";
+import Heading from "../styles/Heading.styles";
 
-// https://www.npmjs.com/package/@react-google-maps/api
+const containerStyle = {
+  width: "100%",
+  height: "calc(100% - 36px)",
+};
 
-const Map = ({ placeholder, title, isPreviousLocation }) => {
+const Map = ({ placeholder, title, targetData }) => {
+  const isLocationToShow = targetData?.latitude && targetData?.longitude;
+
+  const center = {
+    lat: targetData?.latitude || 0,
+    lng: targetData?.longitude || 0,
+  };
+
+  const { isLoaded } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey: "AIzaSyALa-5IX9YlplLBbPSlq1vA2sWHmlJ7V7A",
+  });
+
+  const [map, setMap] = useState(null);
+
+  const onLoad = useCallback(function callback(map) {
+    const bounds = new window.google.maps.LatLngBounds(center);
+    map.fitBounds(bounds);
+
+    setMap(map);
+  }, []);
+
+  const onUnmount = useCallback(function callback(map) {
+    setMap(null);
+  }, []);
+
   return (
     <StyledMap placeholder={placeholder}>
-      <StyledHeading>{title}</StyledHeading>
+      <Heading>{title}</Heading>
+      {isLoaded && isLocationToShow ? (
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          zoom={10}
+          onLoad={onLoad}
+          onUnmount={onUnmount}
+        >
+          {/* Child components, such as markers, info windows, etc. */}
+          <>
+            <Marker position={center} />
+          </>
+        </GoogleMap>
+      ) : (
+        <>
+          <p>There is no location to show</p>
+        </>
+      )}
     </StyledMap>
   );
 };
 
 Map.propTypes = {
   placeholder: PropTypes.oneOf(["top", "bottom"]),
+  title: PropTypes.string,
 };
 
-export default Map;
+export default React.memo(Map);

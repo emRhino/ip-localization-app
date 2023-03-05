@@ -9,7 +9,8 @@ import LocationDetails from "./LocationDetails";
 import IPsContext from "../context/IPsHistory";
 
 const App = function App() {
-  const { localizations } = useContext(IPsContext);
+  const { localizations, previousLocalization, lastLocalization } =
+    useContext(IPsContext);
 
   // useEffect(() => {
   //   const targetData = () => {
@@ -24,24 +25,24 @@ const App = function App() {
       <Wrapper>
         <SearchesHistory />
         <SearchBar />
-        <Map placeholder="top" title="Current IP location" />
-        <Map placeholder="bottom" title="Prevoius IP location" />
+        <Map
+          placeholder="top"
+          title="Current IP location"
+          targetData={lastLocalization}
+        />
+        <Map
+          placeholder="bottom"
+          title="Prevoius IP location"
+          targetData={previousLocalization}
+        />
         <LocationDetails
           placeholder="top"
           title="Current IP details"
-          targetData={
-            localizations.length > 0
-              ? localizations[localizations.length - 1]
-              : null
-          }
+          targetData={lastLocalization}
         />
         <LocationDetails
           placeholder="bottom"
-          targetData={
-            localizations.length > 1
-              ? localizations[localizations.length - 2]
-              : null
-          }
+          targetData={previousLocalization}
           title="Previous IP details"
         />
       </Wrapper>

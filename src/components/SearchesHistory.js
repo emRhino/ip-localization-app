@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import StyledHeading from "./Heading";
+import Heading from "./Heading";
 import {
   StyledSearchHistory,
-  StyledSearchHistoryListWrapper,
+  ListWrapper,
 } from "../styles/SearchHistory.styles";
 import IPsContext from "../context/IPsHistory";
 import SingleIpAddress from "./SingleIpAddress";
@@ -11,8 +11,7 @@ const SearchesHistory = () => {
   const { localizations } = useContext(IPsContext);
 
   const renderHistoryList = () => {
-    const reverseList = localizations.reverse();
-    const list = reverseList.map((localization, index) => {
+    const list = localizations.map((localization, index) => {
       return <SingleIpAddress key={index} address={localization.ip} />;
     });
 
@@ -21,10 +20,8 @@ const SearchesHistory = () => {
 
   return (
     <StyledSearchHistory>
-      <StyledHeading>Search history</StyledHeading>
-      <StyledSearchHistoryListWrapper>
-        {renderHistoryList()}
-      </StyledSearchHistoryListWrapper>
+      <Heading>Search history</Heading>
+      <ListWrapper>{renderHistoryList()}</ListWrapper>
     </StyledSearchHistory>
   );
 };

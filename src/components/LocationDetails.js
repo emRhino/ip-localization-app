@@ -1,53 +1,49 @@
 import PropTypes from "prop-types";
-
+import { Fragment } from "react";
 import {
-  StyledLocationDetails,
-  StyledLocationDetailsLabel,
-  StyledLocationDetailsItem,
-  StyledLocationDetailsIValue,
+  DetailsWrapper,
+  Label,
+  Item,
+  Value,
+  Image,
 } from "../styles/LocationDetails.styles";
-import StyledHeading from "../styles/Heading.styles";
+import Heading from "../styles/Heading.styles";
 
 const LocationDetails = ({ placeholder, targetData, title }) => {
   const renderDetails = () => {
-    if (!targetData) {
-      return false;
-    }
-
     return (
-      <>
-        <StyledLocationDetailsItem>
-          <StyledLocationDetailsLabel>IP address</StyledLocationDetailsLabel>
-          <StyledLocationDetailsIValue>
-            {targetData.ip} ({targetData.type}){" "}
-            <img src={targetData.location.country_flag} alt="" />
-          </StyledLocationDetailsIValue>
-        </StyledLocationDetailsItem>
-        <StyledLocationDetailsItem>
-          <StyledLocationDetailsLabel>Place</StyledLocationDetailsLabel>
-          <StyledLocationDetailsIValue>
-            {targetData.city}, {targetData.region_name}
-          </StyledLocationDetailsIValue>
-        </StyledLocationDetailsItem>
-        <StyledLocationDetailsItem>
-          <StyledLocationDetailsLabel>Zip-code</StyledLocationDetailsLabel>
-          <div>{targetData.zip}</div>
-        </StyledLocationDetailsItem>
-      </>
+      <Fragment>
+        <Item>
+          <Label>IP address</Label>
+          <Value>
+            {targetData?.ip} ({targetData?.type}){" "}
+            <Image src={targetData?.location?.country_flag} />
+          </Value>
+        </Item>
+        <Item>
+          <Label>Place</Label>
+          <Value>
+            {targetData?.city}, {targetData?.region_name}
+          </Value>
+        </Item>
+        <Item>
+          <Label>Zip-code</Label>
+          <div>{targetData?.zip}</div>
+        </Item>
+      </Fragment>
     );
   };
 
   return (
-    <StyledLocationDetails placeholder={placeholder}>
-      <StyledHeading>{title}</StyledHeading>
-      {renderDetails()}
-    </StyledLocationDetails>
+    <DetailsWrapper placeholder={placeholder}>
+      <Heading>{title}</Heading>
+      {targetData?.latitude ? renderDetails() : "There is no location to show"}
+    </DetailsWrapper>
   );
 };
 
 LocationDetails.propTypes = {
   placeholder: PropTypes.oneOf(["top", "bottom"]),
-  targetData: PropTypes.oneOf(["previus"]),
 };
 
 export default LocationDetails;
