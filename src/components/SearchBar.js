@@ -7,7 +7,7 @@ import {
   StyledSubmit,
 } from "../styles/SearchBar.styles";
 
-const API_KEY = "88fb9d120ea7416f39ab623d956fb2c2";
+const API_KEY = process.env.REACT_APP_IPSTACK_API;
 
 const SearchBar = () => {
   const [phrase, setPhrase] = useState("");
@@ -34,7 +34,7 @@ const SearchBar = () => {
     }
 
     const response = await axios.get(
-      `http://api.ipstack.com/${phrase}?access_key=${API_KEY}`
+      `https://api.ipstack.com/${phrase}?access_key=${API_KEY}`
     );
 
     addLocalization(response.data);

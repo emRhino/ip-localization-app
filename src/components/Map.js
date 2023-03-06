@@ -21,7 +21,7 @@ const Map = ({ placeholder, title, targetData }) => {
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyALa-5IX9YlplLBbPSlq1vA2sWHmlJ7V7A",
+    googleMapsApiKey: process.env.REACT_APP_GMAP_API,
   });
 
   const [map, setMap] = useState(null);
